@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>For Cyrus, on turning 21</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --wine-deep: #2a0a12;
+    --wine: #4a1220;
+    --wine-light: #6b1c2e;
+    --gold: #cba135;
+    --gold-bright: #e8c766;
+    --cream: #f3e6c9;
+    --cream-dim: #c9b48a;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  body {
+    background: radial-gradient(ellipse at 50% 0%, var(--wine-light) 0%, var(--wine) 45%, var(--wine-deep) 100%);
+    color: var(--cream);
+    font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .ember {
+    position: fixed;
+    bottom: -10px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--gold-bright);
+    opacity: 0;
+    filter: blur(0.3px);
+    animation: rise linear infinite;
+    pointer-events: none;
+  }
+  @keyframes rise {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.9; }
+    90% { opacity: 0.4; }
+    100% { transform: translateY(-105vh) translateX(var(--drift, 20px)); opacity: 0; }
+  }
+
+  .stage {
+    width: 100%;
+    max-width: 620px;
+    padding: 48px 28px 64px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .eyebrow {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--cream-dim);
+    letter-spacing: 0.02em;
+    margin: 0 0 6px;
+  }
+
+  h1.headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(2.2rem, 7vw, 3.4rem);
+    line-height: 1.08;
+    margin: 0 0 28px;
+    color: var(--gold-bright);
+    text-shadow: 0 0 30px rgba(203,161,53,0.25);
+  }
+
+  .divider {
+    width: 120px;
+    height: 1px;
+    margin: 0 auto 34px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    position: relative;
+  }
+  .divider::after {
+    content: '♦';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--wine-deep);
+    color: var(--gold);
+    font-size: 0.7rem;
+    padding: 0 10px;
+  }
+
+  #countdown-view { transition: opacity 0.9s ease; }
+  #countdown-view.hidden { display: none; }
+
+  .clock {
+    display: flex;
+    justify-content: center;
+    gap: clamp(10px, 3vw, 22px);
+    margin-bottom: 30px;
+  }
+  .unit {
+    min-width: 66px;
+  }
+  .unit .num {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 8vw, 3.1rem);
+    color: var(--cream);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .unit .lbl {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    color: var(--cream-dim);
+    margin-top: 6px;
+    display: block;
+  }
+  .colon {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 6vw, 2.4rem);
+    color: var(--gold);
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+
+  .waiting-note {
+    font-style: italic;
+    color: var(--cream-dim);
+    font-size: 1.05rem;
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .envelope-wrap {
+    margin: 38px auto 0;
+    display: flex;
+    justify-content: center;
+  }
+  .envelope {
+    width: 150px;
+    height: 100px;
+    position: relative;
+    cursor: pointer;
+    filter: drop-shadow(0 8px 18px rgba(0,0,0,0.4));
+  }
+  .envelope .body {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(160deg, #e9d9ae, #d9c48b);
+    border-radius: 3px;
+  }
+  .envelope .flap {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 55px;
+    background: linear-gradient(160deg, #d9c48b, #c7ae74);
+    clip-path: polygon(0 0, 100% 0, 50% 65%);
+    transform-origin: top center;
+    transition: transform 0.6s ease;
+  }
+  .seal {
+    position: absolute;
+    top: 40px; left: 50%;
+    transform: translate(-50%, 0);
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, var(--wine-light), var(--wine) 70%);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold-bright);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  }
+  .envelope-caption {
+    margin-top: 14px;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+    color: var(--cream-dim);
+    font-style: italic;
+  }
+
+  #reveal-view {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 1.1s ease, transform 1.1s ease;
+  }
+  #reveal-view.shown {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  #reveal-view.hidden { display: none; }
+
+  .letter {
+    background: linear-gradient(160deg, rgba(243,230,201,0.06), rgba(243,230,201,0.02));
+    border: 1px solid rgba(203,161,53,0.35);
+    border-radius: 4px;
+    padding: 38px 30px;
+    text-align: left;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+  .letter p {
+    font-size: clamp(1.05rem, 2.6vw, 1.2rem);
+    line-height: 1.75;
+    color: var(--cream);
+    margin: 0 0 18px;
+  }
+  .letter p:last-of-type { margin-bottom: 0; }
+  .signoff {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--gold-bright);
+    text-align: right;
+    margin-top: 24px;
+  }
+
+  .age-badge {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 22px;
+    border: 1px solid var(--gold);
+    border-radius: 999px;
+    color: var(--gold-bright);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 0.06em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ember { animation: none; display: none; }
+    #countdown-view, #reveal-view { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+
+  <div id="countdown-view">
+    <p class="eyebrow">for my love, Cyrus</p>
+    <h1 class="headline">Something is waiting<br>for midnight.</h1>
+    <div class="divider"></div>
+
+    <div class="clock" aria-live="polite">
+      <div class="unit"><span class="num" id="hrs">00</span><span class="lbl">HOURS</span></div>
+      <div class="colon">:</div>
+      <div class="unit"><span class="num" id="mins">00</span><span class="lbl">MINUTES</span></div>
+      <div class="colon">:</div>
+      <div class="unit"><span class="num" id="secs">00</span><span class="lbl">SECONDS</span></div>
+    </div>
+
+    <p class="waiting-note">until the clock turns, and you turn twenty-one. I've written you something — it opens itself the moment your day begins.</p>
+
+    <div class="envelope-wrap">
+      <div>
+        <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Open letter early">
+          <div class="body"></div>
+          <div class="flap" id="flap"></div>
+          <div class="seal">S</div>
+        </div>
+        <p class="envelope-caption">or open it early, if you can't wait</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="reveal-view" class="hidden">
+    <p class="eyebrow">happy 21st, my love</p>
+    <h1 class="headline">Twenty-one looks<br>good on you.</h1>
+    <div class="divider"></div>
+
+    <div class="letter">
+      <p>Babe, since July, being with you has felt like the softest kind of luck. You notice everything — when I'm quiet because I'm sad, when I'm louder than usual because I'm happy, when I'm just bored and need someone to talk to. Most people miss those days. You never do.</p>
+      <p>You put me first without making a thing of it. You just do it, again and again, until it stops feeling like an effort and starts feeling like who you are. I don't think you know how rare that is. I do.</p>
+      <p>There's a kind of steadiness in you that I don't think you even notice you have. You show up gently, every single time, and somehow that gentleness has never once felt small — it's the strongest thing about you. Being chosen by someone like that, every day, without having to ask for it, is not a small thing to me.</p>
+      <p>Today you turn twenty-one, my love — and I hope this year hands you back even a little of what you give away so freely. I'm just glad I get to watch you grow into it, right here beside you.</p>
+      <p>So here's to you, babe — the way you love without keeping score, the way you make ordinary days feel like something worth remembering. You make me feel like the luckiest. I hope you always know exactly how special you are, because you make everyone around you feel that way first.</p>
+      <p>Happy birthday, my baby. I love you, endlessly.</p>
+      <div class="signoff">— Serah</div>
+    </div>
+
+    <div style="text-align:center;">
+      <span class="age-badge">21 · your year</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  var target = new Date("2026-09-23T00:00:00+03:00").getTime();
+
+  var countdownView = document.getElementById('countdown-view');
+  var revealView = document.getElementById('reveal-view');
+  var envelope = document.getElementById('envelope');
+  var flap = document.getElementById('flap');
+
+  var revealed = false;
+
+  function showReveal() {
+    if (revealed) return;
+    revealed = true;
+    countdownView.classList.add('hidden');
+    revealView.classList.remove('hidden');
+    requestAnimationFrame(function() {
+      revealView.classList.add('shown');
+    });
+  }
+
+  function openEnvelope() {
+    if (flap) flap.style.transform = 'rotateX(180deg)';
+    setTimeout(showReveal, 350);
+  }
+
+  function tick() {
+    var now = Date.now();
+    var diff = target - now;
+
+    if (diff <= 0) {
+      showReveal();
+      return;
+    }
+
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+
+    var hrsEl = document.getElementById('hrs');
+    var minsEl = document.getElementById('mins');
+    var secsEl = document.getElementById('secs');
+    if (hrsEl) hrsEl.textContent = String(h).padStart(2, '0');
+    if (minsEl) minsEl.textContent = String(m).padStart(2, '0');
+    if (secsEl) secsEl.textContent = String(s).padStart(2, '0');
+  }
+
+  tick();
+  var interval = setInterval(function() {
+    tick();
+    if (Date.now() >= target) clearInterval(interval);
+  }, 1000);
+
+  if (envelope) {
+    envelope.addEventListener('click', openEnvelope);
+    envelope.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') openEnvelope();
+    });
+  }
+
+  try {
+    var count = window.matchMedia('(max-width: 600px)').matches ? 12 : 20;
+    for (var i = 0; i < count; i++) {
+      var e = document.createElement('div');
+      e.className = 'ember';
+      e.style.left = Math.random() * 100 + 'vw';
+      e.style.setProperty('--drift', (Math.random() * 40 - 20) + 'px');
+      e.style.animationDuration = (6 + Math.random() * 6) + 's';
+      e.style.animationDelay = (Math.random() * 8) + 's';
+      document.body.appendChild(e);
+    }
+  } catch (err) {}
+})();
+</script>
+
+</body>
+</html>
