@@ -36,6 +36,7 @@
     position: relative;
   }
 
+  /* faint drifting embers */
   .ember {
     position: fixed;
     bottom: -10px;
@@ -102,6 +103,7 @@
     padding: 0 10px;
   }
 
+  /* ---- Countdown screen ---- */
   #countdown-view { transition: opacity 0.9s ease; }
   #countdown-view.hidden { display: none; }
 
@@ -146,6 +148,7 @@
     line-height: 1.6;
   }
 
+  /* ---- Envelope ---- */
   .envelope-wrap {
     margin: 38px auto 0;
     display: flex;
@@ -194,6 +197,7 @@
     font-style: italic;
   }
 
+  /* ---- Reveal screen ---- */
   #reveal-view {
     opacity: 0;
     transform: translateY(14px);
@@ -303,6 +307,7 @@
 
 <script>
 (function() {
+  // Target: midnight at the start of Sept 23, 2026, East Africa Time (UTC+3)
   var target = new Date("2026-09-23T00:00:00+03:00").getTime();
 
   var countdownView = document.getElementById('countdown-view');
@@ -361,6 +366,7 @@
     });
   }
 
+  // drifting embers
   try {
     var count = window.matchMedia('(max-width: 600px)').matches ? 12 : 20;
     for (var i = 0; i < count; i++) {
