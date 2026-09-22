@@ -21,21 +21,21 @@
   }
   * { box-sizing: border-box; }
   html, body {
-    height: 100%;
+    min-height: 100%;
     margin: 0;
   }
   body {
     background: radial-gradient(ellipse at 50% 0%, var(--wine-light) 0%, var(--wine) 45%, var(--wine-deep) 100%);
     color: var(--cream);
     font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
-    min-height: 100%;
+    min-height: 100dvh;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     overflow-x: hidden;
     position: relative;
   }
-
   /* faint drifting embers */
   .ember {
     position: fixed;
@@ -60,6 +60,7 @@
     width: 100%;
     max-width: 620px;
     padding: 48px 28px 64px;
+    margin-top: max(24px, 6vh);
     text-align: center;
     position: relative;
     z-index: 2;
@@ -257,8 +258,8 @@
 <div class="stage">
 
   <div id="countdown-view">
-    <p class="eyebrow">for my love, Cyrus</p>
-    <h1 class="headline">Something is waiting<br>for midnight.</h1>
+    <p class="eyebrow">for my love, Cyrus 🥰</p>
+    <h1 class="headline">Something is waiting<br>for midnight. 🕯️💋</h1>
     <div class="divider"></div>
 
     <div class="clock" aria-live="polite">
@@ -269,7 +270,7 @@
       <div class="unit"><span class="num" id="secs">00</span><span class="lbl">SECONDS</span></div>
     </div>
 
-    <p class="waiting-note">until the clock turns, and you turn twenty-one. I've written you something — it opens itself the moment your day begins.</p>
+    <p class="waiting-note">until the clock turns, and you turn twenty-one 🎂✨. I've written you something — it opens itself the moment your day begins. 💌</p>
 
     <div class="envelope-wrap">
       <div>
@@ -284,22 +285,22 @@
   </div>
 
   <div id="reveal-view" class="hidden">
-    <p class="eyebrow">happy 21st, my love</p>
-    <h1 class="headline">Twenty-one looks<br>good on you.</h1>
+    <p class="eyebrow">happy 21st, my love 💕</p>
+    <h1 class="headline">Twenty-one looks<br>good on you. 😍🔥</h1>
     <div class="divider"></div>
 
     <div class="letter">
-      <p>Babe, since July, being with you has felt like the softest kind of luck. You notice everything — when I'm quiet because I'm sad, when I'm louder than usual because I'm happy, when I'm just bored and need someone to talk to. Most people miss those days. You never do.</p>
-      <p>You put me first without making a thing of it. You just do it, again and again, until it stops feeling like an effort and starts feeling like who you are. I don't think you know how rare that is. I do.</p>
-      <p>There's a kind of steadiness in you that I don't think you even notice you have. You show up gently, every single time, and somehow that gentleness has never once felt small — it's the strongest thing about you. Being chosen by someone like that, every day, without having to ask for it, is not a small thing to me.</p>
-      <p>Today you turn twenty-one, my love — and I hope this year hands you back even a little of what you give away so freely. I'm just glad I get to watch you grow into it, right here beside you.</p>
-      <p>So here's to you, babe — the way you love without keeping score, the way you make ordinary days feel like something worth remembering. You make me feel like the luckiest. I hope you always know exactly how special you are, because you make everyone around you feel that way first.</p>
-      <p>Happy birthday, my baby. I love you, endlessly.</p>
-      <div class="signoff">— Serah</div>
+      <p>Babe, since July, being with you has felt like the softest kind of luck 🍀💞. You notice everything — when I'm quiet because I'm sad, when I'm louder than usual because I'm happy, when I'm just bored and need someone to talk to. Most people miss those days. You never do. 🥹</p>
+      <p>You put me first without making a thing of it. You just do it, again and again, until it stops feeling like an effort and starts feeling like who you are. I don't think you know how rare that is. I do. 💗</p>
+      <p>There's a kind of steadiness in you that I don't think you even notice you have. You show up gently, every single time, and somehow that gentleness has never once felt small — it's the strongest thing about you. Being chosen by someone like that, every day, without having to ask for it, is not a small thing to me. 🥰</p>
+      <p>Today you turn twenty-one, my love 🎉 — and I hope this year hands you back even a little of what you give away so freely. I'm just glad I get to watch you grow into it, right here beside you. 💫</p>
+      <p>So here's to you, babe — the way you love without keeping score, the way you make ordinary days feel like something worth remembering. You make me feel like the luckiest 🍾. I hope you always know exactly how special you are, because you make everyone around you feel that way first. 😘</p>
+      <p>Happy birthday, my baby. I love you, endlessly. ❤️‍🔥💍</p>
+      <div class="signoff">— Serah 💋</div>
     </div>
 
     <div style="text-align:center;">
-      <span class="age-badge">21 · your year</span>
+      <span class="age-badge">21 · your year 🥂</span>
     </div>
   </div>
 
